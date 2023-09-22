@@ -56,8 +56,12 @@ double calculateZ1(double& x) {
     double numerator1 = (1 + x + x * x);
     double denominator1 = (2 * x + x * x);
 
+    throwException(denominator1);
+
     double numerator2 = (1 - x + x * x);
     double denominator2 = (2 * x - x * x);
+
+    throwException(denominator2);
 
     double innerResult = (2 + (numerator1 / denominator1) - (numerator2 / denominator2));
     double result = innerResult * innerResult * (5 - 2 * x * x);
