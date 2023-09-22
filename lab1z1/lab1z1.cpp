@@ -44,6 +44,14 @@ private:
     int errorCode;
 };
 
+template <typename T>
+bool throwException(T& x) {
+
+    if (x == 0) {
+        throw CustomException("Ошибка: деление на нуль", x, 1);
+    }
+}
+
 double calculateZ1(double& x) {
     double numerator1 = (1 + x + x * x);
     double denominator1 = (2 * x + x * x);
@@ -54,9 +62,7 @@ double calculateZ1(double& x) {
     double innerResult = (2 + (numerator1 / denominator1) - (numerator2 / denominator2));
     double result = innerResult * innerResult * (5 - 2 * x * x);
 
-    if (std::isnan(result)) {
-        throw CustomException("Результат Z1 неопределен (возможно, деление на ноль)", result, 1);
-    }
+    throwException(result);
 
     return result;
 }
@@ -64,9 +70,7 @@ double calculateZ1(double& x) {
 double calculateZ2(double& x) {
     double result = (4 - x * x) / 2;
 
-    if (std::isnan(result)) {
-        throw CustomException("Результат Z2 неопределен (возможно, деление на ноль)", result, 2);
-    }
+    throwException(result);
 
     return result;
 }
